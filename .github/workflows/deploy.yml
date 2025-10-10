@@ -42,7 +42,7 @@ jobs:
       run: flutter config --enable-web
 
     - name: Build web
-      run: flutter build web --base-href /Quadrapp-Frontend-Mobile/ --web-renderer html
+      run: flutter build web --base-href /Quadrapp-Frontend-Mobile/
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
