@@ -44,6 +44,10 @@ class _AppNavigatorState extends State<AppNavigator> {
   }
   bool _showReservations = false;
   bool _showProfile = false;
+  bool _showEditProfile = false;
+  bool _showSettings = false;
+  bool _showNotifications = false;
+  
   void _onShowProfile() {
     setState(() {
       _showProfile = true;
@@ -53,6 +57,42 @@ class _AppNavigatorState extends State<AppNavigator> {
   void _onBackFromProfile() {
     setState(() {
       _showProfile = false;
+    });
+  }
+
+  void _onShowEditProfile() {
+    setState(() {
+      _showEditProfile = true;
+    });
+  }
+
+  void _onBackFromEditProfile() {
+    setState(() {
+      _showEditProfile = false;
+    });
+  }
+
+  void _onShowSettings() {
+    setState(() {
+      _showSettings = true;
+    });
+  }
+
+  void _onBackFromSettings() {
+    setState(() {
+      _showSettings = false;
+    });
+  }
+
+  void _onShowNotifications() {
+    setState(() {
+      _showNotifications = true;
+    });
+  }
+
+  void _onBackFromNotifications() {
+    setState(() {
+      _showNotifications = false;
     });
   }
   Map<String, dynamic>? _selectedReserva;
@@ -365,8 +405,26 @@ class _AppNavigatorState extends State<AppNavigator> {
         onSelectReserva: _onSelectReserva,
       );
     }
+    if (_isLoggedIn && _showPaymentMethods) {
+      return PaymentMethodsScreen(onBack: _onBackFromPaymentMethods);
+    }
+    if (_isLoggedIn && _showNotifications) {
+      return NotificationsScreen(onBack: _onBackFromNotifications);
+    }
+    if (_isLoggedIn && _showSettings) {
+      return SettingsScreen(onBack: _onBackFromSettings);
+    }
+    if (_isLoggedIn && _showEditProfile) {
+      return EditProfileScreen(onBack: _onBackFromEditProfile);
+    }
     if (_isLoggedIn && _showProfile) {
-      return ProfileScreen(onBack: _onBackFromProfile);
+      return ProfileScreen(
+        onBack: _onBackFromProfile,
+        onEditProfile: _onShowEditProfile,
+        onPaymentMethods: _onShowPaymentMethods,
+        onSettings: _onShowSettings,
+        onNotifications: _onShowNotifications,
+      );
     }
     if (_isLoggedIn) {
       return HomeScreen(

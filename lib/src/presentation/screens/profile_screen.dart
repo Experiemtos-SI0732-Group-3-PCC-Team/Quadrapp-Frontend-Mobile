@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
   final VoidCallback? onBack;
-  const ProfileScreen({Key? key, this.onBack}) : super(key: key);
+  final VoidCallback? onEditProfile;
+  final VoidCallback? onPaymentMethods;
+  final VoidCallback? onSettings;
+  final VoidCallback? onNotifications;
+  const ProfileScreen({
+    Key? key, 
+    this.onBack, 
+    this.onEditProfile,
+    this.onPaymentMethods,
+    this.onSettings,
+    this.onNotifications,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,30 +47,28 @@ class ProfileScreen extends StatelessWidget {
                   icon: Icons.person_outline,
                   title: 'Datos personales',
                   subtitle: 'Editar información',
-                  onTap: () {},
+                  onTap: onEditProfile,
                 ),
                 SizedBox(height: 12),
                 _ProfileCard(
                   icon: Icons.credit_card,
                   title: 'Métodos de pago',
                   subtitle: 'Tarjetas guardadas',
-                  onTap: () {
-                    if (onBack != null) onBack!();
-                  },
+                  onTap: onPaymentMethods,
                 ),
                 SizedBox(height: 12),
                 _ProfileCard(
                   icon: Icons.notifications_none,
                   title: 'Notificaciones',
                   subtitle: 'Visualizar Notificaciones',
-                  onTap: () {},
+                  onTap: onNotifications,
                 ),
                 SizedBox(height: 12),
                 _ProfileCard(
                   icon: Icons.settings,
                   title: 'Configuración',
                   subtitle: 'Preferencias de la app',
-                  onTap: () {},
+                  onTap: onSettings,
                 ),
               ],
             ),
